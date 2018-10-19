@@ -1,0 +1,33 @@
+.player{
+    border: 5px dotted blue;
+}
+
+.defender{
+    color: rgb(0, 61, 245);
+    border: 5px solid royalblue;
+}
+
+.enemy{
+    color: red;
+    border: 5px solid red;
+}
+
+.hero{
+    color: green;
+    border: 5px solid green;
+}
+
+.defendarea{
+
+}
+
+.gamearea{
+
+}
+
+.battleara{
+
+}
+.gamefont{
+    font-family: 'VT323', monospace;
+}
