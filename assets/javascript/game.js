@@ -15,6 +15,7 @@ var playerclickcheck = false;
 if(playerclickcheck == false){
     $(".gamearea").on("click", ".player", function(){
     $(this).removeClass("player");
+<<<<<<< HEAD
     $(".battlearea").append($(".player"));
     $(".player").addClass("enemy").removeClass("player");
     $(this).addClass("hero");
@@ -32,6 +33,23 @@ $("#attack").on("click",function(){
     var defenderindex = $(".defender").attr("value");
     heroObj = character[parseInt(heroindex)];
     defenderObj = character[parseInt(defenderindex)];
+=======
+    $(".player").addClass("enemy")
+    $(".battlearea").append($(".enemy"));
+    $(".player").removeClass("player");
+    playerclickcheck = true;
+    })
+}
+else{
+    $(".enemy").on("click",function(){
+    $(this).addClass("defender");
+    $(this).removeClass("enemy")
+    $(".defendarea").append($(".defender"));
+    })
+}
+
+
+>>>>>>> 27794892da50028ebd0edbcb17bb99c2115ffa40
 
     defenderObj.hp = defenderObj.hp - heroObj.ap;
     console.log("The defender health is "+defenderObj.hp);
