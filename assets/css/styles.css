@@ -1,33 +1,49 @@
+body{
+    background-image: url("../images/jojoback.png");
+    color: wheat;
+}
+header{
+    background-image: url("../images/jumboback.jpg");
+    background-size: 300px;
+}
 .player{
     border: 5px dotted blue;
 }
 
 .defender{
     color: rgb(0, 61, 245);
+    background-color: rgb(161, 170, 199);
     border: 5px solid royalblue;
 }
 
 .enemy{
     color: red;
+    background-color: rgb(207, 152, 152);
     border: 5px solid red;
 }
 
 .hero{
     color: green;
+    background-color: rgb(151, 206, 151);
     border: 5px solid green;
 }
 
 .defendarea{
-
+    background-image: url("../images/deback.png");
+ 
 }
 
 .gamearea{
+    background: url("../images/heroback.png");
 
 }
 
-.battleara{
+.battlearea{
+    background-image: url("../images/enemyback.jpg");
+
 
 }
 .gamefont{
     font-family: 'VT323', monospace;
+    color: palegreen;
 }
