@@ -13,6 +13,7 @@ var playerclickcheck = false;
 var killcount = 0;
        
 //Start Game
+// First Click: Hero
 if(playerclickcheck == false){
     $(".gamearea").on("click", ".player", function(){
     $(this).removeClass("player");
@@ -27,7 +28,7 @@ if(playerclickcheck == false){
     playerclickcheck = true;
     })
 }
-
+// Second Click: Enemy and Defender
 $(".battlearea").on("click",".enemy", function(){
     $(this).removeClass("hero").removeClass("enemy").addClass("defender");
     $(".defendarea").append($(".defender"));
@@ -35,7 +36,7 @@ $(".battlearea").on("click",".enemy", function(){
     var defenderindex = $(".defender").attr("value");
     defenderObj = character[parseInt(defenderindex)];
     // Display Defender Stats
-    $(".defendarea").prepend("<h2>"+defenderObj.name+"</h2>");
+    $(".defendarea").prepend("<h2>"+defenderObj.name+"</h2>").addClass("gamefont");
     });
 // Attack Button
 $("#attack").on("click",function(){
@@ -44,17 +45,16 @@ $("#attack").on("click",function(){
 
     heroObj = character[parseInt(heroindex)];
     defenderObj = character[parseInt(defenderindex)];
-
-    $(".defendarea").append("<h4> HP: "+defenderObj.hp+"</h4>").addClass("gamefont");
-
+    $(".defenderHP").empty();
+    $(".heroHP").empty();
+    $(".defendarea").append("<h4 class='defenderHP'> HP: "+defenderObj.hp+"</h4>").addClass("gamefont");
+    $(".gamearea").append("<h4 class='heroHP'> HP: "+heroObj.hp+"</h4>").addClass("gamefont");
     defenderObj.hp = defenderObj.hp - heroObj.ap;
     heroObj.hp = heroObj.hp - defenderObj.ap;
     heroObj.ap = heroObj.ap + 10;
 
     alert(character[heroindex].name+" attack "+ character[defenderindex].name+" with "+character[parseInt(heroindex)].ap+" Attack Power");
     alert(character[defenderindex].name +" attack "+ character[heroindex].name+" with "+character[parseInt(defenderindex)].ap+" Attack Power");
-    alert(heroObj.name+"'s HP: "+heroObj.hp);
-    alert(defenderObj.name+"'s HP: "+defenderObj.hp)
     
     if(defenderObj.hp<= 0){
         alert("You have defeated "+defenderObj.name);
@@ -63,18 +63,22 @@ $("#attack").on("click",function(){
         killcount++;
         if(killcount == 3&&heroObj.hp>=0){
             $(".gamearea").empty();
+            $(".defendarea").empty();
+            $(".battlearea").empty();
             $(".gamearea").prepend("<h1>You Win</h1>");
         }
     }
     if(heroObj.hp<=0){
         alert(heroObj.name+" have been defeated "+defenderObj.name);
         $(".gamearea").empty();
+        $(".defendarea").empty();
+        $(".battlearea").empty();
         $(".gamearea").prepend("<h1>You Lose</h1>")
-        defenderObj.live = false;
+        heroObj.live = false;
     } 
 
 })
-//Display
+
 
 
 });
