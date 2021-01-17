@@ -1,5 +1,18 @@
 $(document).ready(function(){
 //Character Fighters   
+class Player{
+    constructor(hp,ap){
+        this.hp = hp
+        this.ap = ap
+        this.name = ''
+        this.live = true
+    function click(){
+
+    }
+
+    }
+
+}
 var character = [{name: "Jotaro", hp: 200,ap:25, live: true, img: '<img class="player" value="0" src="./assets/images/jotaro.png" width="300" height="500">'},
     {name:"Joseph", hp:150, ap:8, live:true, img:'<img class="player" value="1" src="./assets/images/joseph.png" width="300" height="500">'},
     {name:"Whaw", hp:120, ap:10, live:true, img:'<img class="player" value="2" src="./assets/images/whaw.png" width="300" height="500">'},
