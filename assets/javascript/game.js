@@ -1,96 +1,79 @@
 $(document).ready(function(){
-//Character Fighters   
+//Character Fighters
+
 class Player{
-    constructor(hp,ap){
+    constructor(name,hp,ap){
         this.hp = hp
         this.ap = ap
-        this.name = ''
+        this.name = name
         this.live = true
-    function click(){
+        this.img
 
     }
-
+    //Player takes Damage
+    newHp(value){
+        console.log(this.hp)
+        this.hp = this.hp - value
+        console.log(this.hp)
     }
-
 }
-var character = [{name: "Jotaro", hp: 200,ap:25, live: true, img: '<img class="player" value="0" src="./assets/images/jotaro.png" width="300" height="500">'},
-    {name:"Joseph", hp:150, ap:8, live:true, img:'<img class="player" value="1" src="./assets/images/joseph.png" width="300" height="500">'},
-    {name:"Whaw", hp:120, ap:10, live:true, img:'<img class="player" value="2" src="./assets/images/whaw.png" width="300" height="500">'},
-    {name:"Dio", hp:90, ap:50, live:true, img:'<img class="player" value="3" src="./assets/images/dio.png" width="300" height="500">'}]
-//Displays Characters
-for(var i=0;i<4;i++){
-    $(".gamearea").append(character[i].img);
-}
+class Battle{
+    Start(){
+        alert("You have the chocie of fighting with Jotaro, Joseph, Wham and Dio")
+        var accept = prompt("Choose your fight","Jotaro");
+        //User input for Character Selection
+        if (accept == "Dio"||"Jotaro"||"Wham"||"Joseph"){
+            switch(accept){
 
-var playerclickcheck = false;
-var killcount = 0;
-       
-//Start Game
-// First Click: Hero
-if(playerclickcheck == false){
-    $(".gamearea").on("click", ".player", function(){
-    $(this).removeClass("player");
-    $(".battlearea").append($(".player"));
-    $(".player").addClass("enemy").removeClass("player");
-    $(this).addClass("hero");
-    // Character Objects
-    var heroindex = $(".hero").attr("value");
-    heroObj = character[parseInt(heroindex)];
-    // Display Hero Stats
-    $(".gamearea").prepend("<h2>"+heroObj.name+"</h2>").addClass("gamefont");
-    playerclickcheck = true;
-    })
-}
-// Second Click: Enemy and Defender
-$(".battlearea").on("click",".enemy", function(){
-    $(this).removeClass("hero").removeClass("enemy").addClass("defender");
-    $(".defendarea").append($(".defender"));
-    // Character Objects
-    var defenderindex = $(".defender").attr("value");
-    defenderObj = character[parseInt(defenderindex)];
-    // Display Defender Stats
-    $(".defendarea").prepend("<h2>"+defenderObj.name+"</h2>").addClass("gamefont");
-    });
-// Attack Button
-$("#attack").on("click",function(){
-    var heroindex = $(".hero").attr("value");
-    var defenderindex = $(".defender").attr("value");
-
-    heroObj = character[parseInt(heroindex)];
-    defenderObj = character[parseInt(defenderindex)];
-    $(".defenderHP").empty();
-    $(".heroHP").empty();
-    $(".defendarea").append("<h4 class='defenderHP'> HP: "+defenderObj.hp+"</h4>").addClass("gamefont");
-    $(".gamearea").append("<h4 class='heroHP'> HP: "+heroObj.hp+"</h4>").addClass("gamefont");
-    defenderObj.hp = defenderObj.hp - heroObj.ap;
-    heroObj.hp = heroObj.hp - defenderObj.ap;
-    heroObj.ap = heroObj.ap + 10;
-
-    alert(character[heroindex].name+" attack "+ character[defenderindex].name+" with "+character[parseInt(heroindex)].ap+" Attack Power");
-    alert(character[defenderindex].name +" attack "+ character[heroindex].name+" with "+character[parseInt(defenderindex)].ap+" Attack Power");
-    
-    if(defenderObj.hp<= 0){
-        alert("You have defeated "+defenderObj.name);
-        $(".defendarea").empty();
-        defenderObj.live = false;
-        killcount++;
-        if(killcount == 3&&heroObj.hp>=0){
-            $(".gamearea").empty();
-            $(".defendarea").empty();
-            $(".battlearea").empty();
-            $(".gamearea").prepend("<h1>You Win</h1>");
+                case "Dio":
+                    alert("You choose Dio")
+                    $(".gamearea").append('<img class="player" src="./assets/images/dio.png">')
+                    return
+                case "Jotaro":
+                    alert("You choose Jotaro")
+                    $(".gamearea").append('<img class="player" src="./assets/images/jotaro.png">')
+                    return
+                case "Wham":
+                    alert("You choose Wham")
+                    $(".gamearea").append('<img class="player" src="./assets/images/wham.png">')
+                    return
+                case "Joseph":
+                    alert("You choose Joseph")
+                    $(".gamearea").append('<img class="player" src="./assets/images/joseph.png">')
+                    return
+            }
         }
     }
-    if(heroObj.hp<=0){
-        alert(heroObj.name+" have been defeated "+defenderObj.name);
-        $(".gamearea").empty();
-        $(".defendarea").empty();
-        $(".battlearea").empty();
-        $(".gamearea").prepend("<h1>You Lose</h1>")
-        heroObj.live = false;
-    } 
+    //Player Displays Names
+    Display(name1,name2){
+        console.log("////////////")
+        console.log("Welcome to BattleZone")
+        console.log("////////////")
+        console.log("This is "+name1)
+        console.log("////////////")
+        console.log("AND")
+        console.log("////////////")
+        console.log("This is "+name2)
+        console.log("////////////")
+    }
+    selectWinner(){
 
-})
+    }
+    reset(){
+
+    }
+}   
+var playJotaro = new Player("Jotaro",200,25);
+var playJoseph = new Player("Joseph",150,10);
+var playWhaw = new Player("Whaw",120,9);
+var playDio = new Player("Dio",90,42);
+
+var batTest = new Battle;
+
+//Displays Characters
+batTest.Start()
+       
+//Start Game
 
 
 
